@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SiteSec - Secure Access Portal</title>
+    <style>
+        /* SiteSec Aesthetics: Purple, Blue, & Liquid Glass */
+        :root {
+            --primary-bg: #050509;
+            --purple-core: #6c5ce7;
+            --blue-core: #0984e3;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.05);
+            --text-main: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: var(--primary-bg);
+            /* Background Aura (SiteSec Style) */
+            background-image: 
+                radial-gradient(at 10% 10%, rgba(108, 92, 231, 0.15) 0px, transparent 50%),
+                radial-gradient(at 90% 90%, rgba(9, 132, 227, 0.15) 0px, transparent 50%);
+            color: var(--text-main);
+            overflow: hidden;
+        }
+
+        /* The Liquid Glass Container */
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-radius: 24px;
+            border: 1px solid var(--glass-border);
+            padding: 50px 40px;
+            width: 380px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            position: relative;
+            z-index: 10;
+        }
+
+        /* SiteSec Logo/Header */
+        .glass-panel h2 {
+            text-align: center;
+            margin-bottom: 35px;
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            background: linear-gradient(135deg, var(--purple-core), var(--blue-core));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Input Fields Style */
+        .input-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            color: var(--text-main);
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: 0.3s;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--purple-core);
+            box-shadow: 0 0 10px rgba(108, 92, 231, 0.3);
+        }
+
+        /* The 'Vulnerable' Login Button */
+        .login-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, var(--purple-core), var(--blue-core));
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s ease;
+            box-shadow: 0 4px 15px rgba(108, 92, 231, 0.2);
+        }
+
+        .login-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(9, 132, 227, 0.3);
+        }
+
+        /* Subtle Background Elements */
+        .bg-circle {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 1;
+        }
+
+        .circle-purple {
+            width: 300px;
+            height: 300px;
+            background: rgba(108, 92, 231, 0.1);
+            top: -100px;
+            left: -100px;
+        }
+
+        .circle-blue {
+            width: 400px;
+            height: 400px;
+            background: rgba(9, 132, 227, 0.1);
+            bottom: -150px;
+            right: -150px;
+        }
+
+        /* Footer Link */
+        .footer-link {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .footer-link a {
+            color: var(--blue-core);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-circle circle-purple"></div>
+    <div class="bg-circle circle-blue"></div>
+
+    <div class="glass-panel">
+        <h2>SITESEC LOGIN</h2>
+        
+        <form action="#" method="POST">
+            <div class="input-group">
+                <label for="username">Corporate ID / Username</label>
+                <input type="text" id="username" name="username" placeholder="e.g. shahin@sitesec.com" required>
+            </div>
+            
+            <div class="input-group">
+                <label for="password">Access Password</label>
+                <input type="password" id="password" name="password" placeholder="••••••••" required>
+            </div>
+            
+            <button type="submit" class="login-btn">Secure Login</button>
+        </form>
+
+        <div class="footer-link">
+            Need assist? <a href="#">Contact Unit 97</a>
+        </div>
+    </div>
+    <script>
+    // SiteSec Simulated Backend Logic (The Vulnerable Part)
+    const loginForm = document.querySelector('form');
+    
+    loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const user = document.getElementById('username').value;
+        const pass = document.getElementById('password').value;
+
+        // ثغرة منطقية فادحة: التحقق يتم عبر الجافا سكريبت!
+        // Logic Flaw: Credentials hardcoded in JS or bypassable via Console
+        if (user === "admin@sitesec.com" && pass === "P@ssword123") {
+            alert("Welcome Admin! Redirecting to SiteSec Dashboard...");
+            window.location.href = "dashboard.html";
+        } else {
+            // الثغرة هنا: يمكن للمهاجم تغيير قيمة المتغير في الـ Console لكسر الشرط
+            alert("Access Denied! Intruder Alert.");
+            console.error("SiteSec Security: Invalid credentials for " + user);
+        }
+    });
+
+    // ميزة SiteSec للجنة: "مفتاح الدخول السحري" (Backdoor Logic)
+    // قل للجنة: المبرمج ترك "باب خلفي" للاختبار ونسي إغلاقه
+    window.siteSecDebugMode = function() {
+        console.warn("SITESEC DEBUG: Logic bypass activated.");
+        alert("CRITICAL: Logical Bypass Detected. Welcome Back, Shahin.");
+        window.location.href = "24356_dashboard.html";
+    };
+</script>
+
+</body>
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>SiteSec AI Auditor - Premium Edition</title>
+    <style>
+        :root {
+            /* توازن الألوان: بنفسجي وأزرق متوسط الوضوح */
+            --bg-gradient: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            --primary-purple: #6c5ce7;
+            --primary-blue: #0984e3;
+            --glass-bg: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.15);
+            --text-main: #ffffff;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            color: var(--text-main);
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* حاوية التصميم الزجاجي السائل */
+        .liquid-glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            width: 95%;
+            max-width: 1100px;
+            padding: 40px;
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            gap: 30px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        /* الشريط الجانبي للمؤسسين */
+        .sidebar {
+            border-left: 1px solid rgba(255,255,255,0.1);
+            padding-left: 20px;
+        }
+
+        .logo-box { text-align: center; margin-bottom: 40px; }
+        .logo-main { 
+            font-size: 40px; font-weight: 900; 
+            background: linear-gradient(to bottom, #a29bfe, #6c5ce7);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+
+        .founders-title { color: var(--primary-blue); font-size: 14px; margin-bottom: 15px; letter-spacing: 1px; }
+        .founder-item {
+            background: rgba(108, 92, 231, 0.1);
+            padding: 12px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            font-size: 15px;
+            border: 1px solid rgba(108, 92, 231, 0.2);
+            transition: 0.3s;
+        }
+        .founder-item:hover { background: rgba(108, 92, 231, 0.3); transform: scale(1.05); }
+
+        /* منطقة العمليات */
+        .main-panel h1 { font-size: 30px; margin-bottom: 5px; color: #fff; }
+        .subtitle { color: #b2bec3; margin-bottom: 25px; font-size: 14px; }
+
+        textarea {
+            width: 100%; height: 180px;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--primary-purple);
+            border-radius: 15px;
+            color: #55efc4;
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            box-sizing: border-box;
+            outline: none;
+            resize: none;
+        }
+
+        .scan-btn {
+            width: 100%; padding: 20px;
+            background: linear-gradient(90deg, var(--primary-purple), var(--primary-blue));
+            border: none; border-radius: 15px;
+            color: white; font-weight: bold; font-size: 18px;
+            cursor: pointer; margin-top: 25px;
+            transition: 0.5s;
+        }
+        .scan-btn:hover { box-shadow: 0 0 30px rgba(108, 92, 231, 0.6); }
+
+        /* التقرير الناتج */
+        #audit-result { display: none; margin-top: 40px; animation: slideUp 0.8s ease; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+        .vuln-report {
+            background: rgba(255, 121, 121, 0.1);
+            border-right: 5px solid #ff7675;
+            padding: 25px; border-radius: 15px; margin-bottom: 20px;
+        }
+
+        .step-list { margin-top: 15px; padding-right: 20px; }
+        .step-list li { margin-bottom: 10px; color: #dfe6e9; }
+        .code-inline { background: #000; padding: 3px 8px; border-radius: 5px; color: #fab1a0; font-family: monospace; }
+
+        .solution-box {
+            background: rgba(85, 239, 196, 0.1);
+            border-right: 5px solid #55efc4;
+            padding: 25px; border-radius: 15px;
+        }
+        .server-fix { color: #fab1a0; font-weight: bold; border-bottom: 1px dashed #fab1a0; }
+    </style>
+</head>
+<body>
+
+<div class="liquid-glass-card">
+    <div class="sidebar">
+        <div class="logo-box">
+            <div class="logo-main">SiteSec</div>
+            <div style="font-size: 10px; color: #aaa;">CYBER SECURITY SOLUTIONS</div>
+        </div>
+        
+        <div class="founders-title">نخبة المؤسسين:</div>
+        <div class="founder-item">سليم الجعد</div>
+        <div class="founder-item">عنبر فرفر</div>
+        <div class="founder-item">خرحلاو</div>
+        <div class="founder-item">ملاب</div>
+    </div>
+
+    <div class="main-panel">
+        <h1>فاحص الكود AI 🛡️</h1>
+        <p class="subtitle">تحليل الثغرات المنطقية والتحقق من سلامة الأكواد في ثوانٍ.</p>
+
+        <textarea id="targetCode" placeholder="[SITESEC] الصق كود الـ JavaScript أو الـ HTML هنا للفحص الدقيق..."></textarea>
+        
+        <button id="mainBtn" class="scan-btn" onclick="executeScan()">إطلاق فحص SiteSec</button>
+
+        <div id="audit-result">
+            <h2 style="color: var(--primary-blue); margin-bottom: 20px;">تقرير الفحص الأمني المتقدم:</h2>
+
+            <div class="vuln-report">
+                <h3 style="color: #ff7675;">🚨 الثغرة 01: تجاوز المنطق عبر الدوال المكشوفة</h3>
+                <p>تم اكتشاف دالة برمجية مخصصة للاختبار (Debug) لا تزال نشطة في الكود النهائي. يسمح هذا بتجاوز الحماية بالكامل.</p>
+                
+                <h4 style="color: #fff;">🛠️ خطوات الاختراق:</h4>
+                <ul class="step-list">
+                    <li>افتح المتصفح -> <span class="code-inline">Inspect</span> -> <span class="code-inline">Console</span>.</li>
+                    <li>اكتب: <span class="code-inline" style="color: #ff7675;">siteSecDebugMode()</span> واضغط Enter.</li>
+                    <li>النتيجة: دخول مباشر للوحة التحكم (Access Granted).</li>
+                </ul>
+            </div>
+
+            <div class="vuln-report">
+                <h3 style="color: #ff7675;">🚨 الثغرة 02: فحص كلمة السر داخل المتصفح (Hardcoded Auth)</h3>
+                <p>يتم التحقق من صحة كلمة السر عبر مقارنة مباشرة داخل كود الـ JavaScript الأمامي. هذا يعني أن "كلمة السر" مكشوفة لأي شخص يقرأ الكود.</p>
+                
+                <h4 style="color: #fff;">🛠️ خطوات الاختراق:</h4>
+                <ul class="step-list">
+                    <li>اضغط <span class="code-inline">كليك يمين</span> ثم <span class="code-inline">View Page Source</span>.</li>
+                    <li>ابحث عن كلمة <span class="code-inline">if (password == ...)</span>.</li>
+                    <li>ستجد كلمة السر مكتوبة بوضوح داخل الكود! استخدمها لتسجيل الدخول كمسؤول.</li>
+                </ul>
+            </div>
+
+            <div class="solution-box">
+                <h3 style="color: #55efc4;">✅ الحل الجذري من SiteSec</h3>
+                <p>في عالم الأمن السيبراني، **لا يمكن الوثوق بالمتصفح أبداً**. الحل لا يكمن في تعديل كود الـ JavaScript فقط، بل في:</p>
+                <ul class="step-list" style="color: #55efc4;">
+                    <li>1. **إلغاء الدوال المحلية:** حذف أي دالة تسمح بتغيير حالة تسجيل الدخول من المتصفح.</li>
+                    <li>2. <span class="server-fix">التوثيق عبر الخادم (Server-Side Auth):</span> يجب إرسال كلمة السر إلى **خادم آمن (Database/Server)** ليقوم هو بالتحقق وإعادة "توكن" مشفر.</li>
+                    <li>3. **إخفاء المنطق:** المتصفح للعرض فقط، أما الأمان الحقيقي فيبنى في الخلفية (Backend).</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function executeScan() {
+        const btn = document.getElementById('mainBtn');
+        const results = document.getElementById('audit-result');
+        
+        btn.innerHTML = "جاري فحص مصفوفة الأمان...";
+        btn.disabled = true;
+
+        setTimeout(() => { btn.innerHTML = "كشف محاولات التحقق المحلي (Client-Side)..."; }, 1000);
+        setTimeout(() => { btn.innerHTML = "تحليل الدوال المكشوفة في الكونسول..."; }, 2000);
+        
+        setTimeout(() => {
+            btn.innerHTML = "تم اكتشاف ثغرات حرجة!";
+            btn.style.background = "#ff7675";
+            results.style.display = "block";
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }, 3200);
+    }
+</script>
+
+</body>
+</html>
