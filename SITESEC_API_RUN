@@ -1,0 +1,24 @@
+https://gamma.app/docs/-lxb9k3hvqpgv95p
+https://ai.studio/apps/988c89e1-ff5b-48f2-a0b1-071ac4d423fc
+
+setIsMenuOpen(false);
+}, [location]);
+
+const navLinks = [
+  { path: '/', label: 'الرئيسية' },
+  { path: '/vision', label: 'الرؤية و الهدف' },
+  { path: '/solution', label: 'المشكلة و الحل' },
+  { path: '/why-us', label: 'لماذا نحن الأفضل' },
+  { path: '/marketing', label: 'استراتيجية التسويق' },
+  { path: '/security', label: 'الأمن' },
+  { path: '/scanner', label: 'فاحص الكود' },
+  { path: '/http-scanner', label: 'HTTP فاحص' },
+  { path: '/osint', label: 'OSINT' },
+  { path: '/vulnerabilities', label: 'الثغرات' },
+  { path: '/advisor', label: 'كن خبيراً معنا' },
+  { path: '/pricing', label: 'الباقات' },
+  { path: '/contact', label: 'اتصل بنا' },
+];
+
+const menuVariants = {
+  closed: {
